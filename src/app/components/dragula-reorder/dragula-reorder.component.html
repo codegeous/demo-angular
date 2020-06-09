@@ -1,0 +1,18 @@
+<h2>Drag & Drop reorder in Angular using Dragula</h2>
+<mat-card class="mat-container">
+	<mat-list dragula="TASKS" [dragulaModel]="tasks" (dragulaModelChange)="tasks = $event">
+		<mat-card layout="row" 
+			[ngStyle]="{ 'margin-top': '20px', 'background-color': task.color}" 
+			*ngFor="let task of tasks;let i = index" >
+            	<span > 
+				<mat-icon class="handle">drag_handle</mat-icon> 
+				{{ i + 1 }}. {{task.text}} 
+			</span>
+		</mat-card>
+	</mat-list>
+</mat-card>
+
+<h3>Output</h3>
+<mat-card class="mat-container">
+	{{ tasks | json }}
+</mat-card>

@@ -1,0 +1,17 @@
+<div
+  class="alert alert-danger"
+  [ngStyle]="{ 'margin-top': '10px', height: '25px', color: 'red' }"
+>
+  <div
+    *ngIf="
+      control.invalid &&
+      (control.dirty || control.touched) &&
+      control.errors.required
+    "
+  >
+    Field is required.
+  </div>
+  <div *ngIf="control.invalid && control.errors.custom">
+    {{ control.errors.custom }}
+  </div>
+</div>
