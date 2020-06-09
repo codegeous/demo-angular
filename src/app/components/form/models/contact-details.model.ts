@@ -1,6 +1,7 @@
 import { FormControl } from "@angular/forms";
+import CustomValidation from "./custom-validation.interface";
 
-export default class ContactDetails {
+export default class ContactDetails implements CustomValidation {
   email = new FormControl("");
   phone = new FormControl("");
   fax = new FormControl("");
