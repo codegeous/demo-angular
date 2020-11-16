@@ -1,12 +1,15 @@
 import { Injectable } from "@angular/core";
 import {SwUpdate} from "@angular/service-worker";
 import { interval } from 'rxjs';
+import { MatSnackBar } from '@angular/material';
 
 @Injectable({
     providedIn: "root"
 })
 export class UpdateService {
-    constructor(public updates: SwUpdate) {
+    constructor(public updates: SwUpdate, private snackbar: MatSnackBar) {
+        
+
         if (updates.isEnabled) {
           interval(6 * 60 * 60).subscribe(() => updates.checkForUpdate()
             .then(() => console.log('checking for updates')));
@@ -18,8 +21,14 @@ export class UpdateService {
       }
     
       private promptUser(): void {
-        console.log('updating to new version');
-        alert("New Version app is available");
-        this.updates.activateUpdate().then(() => document.location.reload()); 
+        
+        this.updates.activateUpdate().then(() => {
+            const snack = this.snackbar.open('New version of the app is available', 'Reload');
+            snack
+                .onAction()
+                .subscribe(() => {
+                window.location.reload();
+                });
+        }); 
       }
 }
