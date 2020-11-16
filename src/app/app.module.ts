@@ -12,6 +12,8 @@ import { FormComponent } from "./components/form/form.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ErrorMessageComponent } from './components/error-message/error-message.component';
 import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent, DragulaReorderComponent, FormComponent, ErrorMessageComponent, ContactDetailsComponent],
@@ -21,7 +23,8 @@ import { ContactDetailsComponent } from './components/contact-details/contact-de
     BrowserAnimationsModule,
     CustomMaterialModule,
     ReactiveFormsModule,
-    DragulaModule.forRoot()
+    DragulaModule.forRoot(),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent],
