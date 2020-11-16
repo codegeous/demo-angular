@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import "./update.service";
+import {UpdateService} from "./update.service";
 
 @Component({
   selector: 'app-root',
@@ -8,4 +8,7 @@ import "./update.service";
 })
 export class AppComponent {
   title = 'youtube-tutorial';
+  constructor(private sw: UpdateService){
+    this.sw.checkForUpdates();
+  }
 }
